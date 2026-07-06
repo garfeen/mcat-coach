@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCAT Elite 515+ Coach</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <!-- Background Glow Blobs -->
+    <div class="bg-glow-container">
+        <div class="bg-glow bg-glow-1"></div>
+        <div class="bg-glow bg-glow-2"></div>
+    </div>
+
+    <div class="app-wrapper">
+        <!-- Sidebar Navigation -->
+        <aside class="app-sidebar">
+            <div class="sidebar-content">
+                <div class="brand">
+                    <div class="brand-logo">
+                        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                            <path d="M2 17l10 5 10-5"></path>
+                            <path d="M2 12l10 5 10-5"></path>
+                        </svg>
+                    </div>
+                    <div class="brand-text">
+                        <h1>MCAT Coach</h1>
+                        <p>Road to 515+</p>
+                    </div>
+                </div>
+
+                <nav class="nav-menu">
+                    <button class="nav-item active" data-section="dashboard">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="3" width="7" height="9"></rect>
+                            <rect x="14" y="3" width="7" height="5"></rect>
+                            <rect x="14" y="12" width="7" height="9"></rect>
+                            <rect x="3" y="16" width="7" height="5"></rect>
+                        </svg>
+                        <span>Dashboard</span>
+                    </button>
+                    
+                    <button class="nav-item" data-section="exercises">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 20h9"></path>
+                            <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"></path>
+                        </svg>
+                        <span>Practice Exercises</span>
+                    </button>
+                    
+                    <button class="nav-item" data-section="scheduler">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="16" y1="2" x2="16" y2="6"></line>
+                            <line x1="8" y1="2" x2="8" y2="6"></line>
+                            <line x1="3" y1="10" x2="21" y2="10"></line>
+                        </svg>
+                        <span>Study Planner</span>
+                    </button>
+                    
+                    <button class="nav-item" data-section="resources">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"></path>
+                            <path d="M6 6h10"></path>
+                            <path d="M6 10h10"></path>
+                        </svg>
+                        <span>Resource Hub</span>
+                    </button>
+
+                    <button class="nav-item" data-section="chat-assistant">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                        </svg>
+                        <span>AI Study Coach</span>
+                    </button>
+                </nav>
+
+                <div class="sidebar-footer">
+                    <div class="target-badge">
+                        <span class="badge-title">Estimated Score</span>
+                        <span class="badge-score">500</span>
+                        <span class="badge-caption">Study Mode (&lt;508)</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="app-main">
+            
+            <!-- SECTION 1: DASHBOARD -->
+            <section id="dashboard" class="app-section active">
+                <div class="section-header">
+                    <h2>Preparatory Dashboard</h2>
+                    <p>Track your target milestones and monitor scaled performance across core categories.</p>
+                </div>
+
+                <div class="dashboard-grid">
+                    <!-- Core Stats -->
+                    <div class="card stat-card">
+                        <div class="stat-icon">
+                            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                            </svg>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-label">Study Streak</span>
+                            <span class="stat-value" id="dash-streak">1 Days</span>
+                        </div>
+                    </div>
+
+                    <div class="card stat-card">
+                        <div class="stat-icon">
+                            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <polyline points="12 6 12 12 16 14"></polyline>
+                            </svg>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-label">Hours Studied</span>
+                            <span class="stat-value" id="dash-hours">0h</span>
+                        </div>
+                    </div>
+
+                    <div class="card stat-card">
+                        <div class="stat-icon">
+                            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                <polyline points="14 2 14 8 20 8"></polyline>
+                                <line x1="16" y1="13" x2="8" y2="13"></line>
+                                <line x1="16" y1="17" x2="8" y2="17"></line>
+                                <polyline points="10 9 9 9 8 9"></polyline>
+                            </svg>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-label">Practice Qs</span>
+                            <span class="stat-value" id="dash-questions">0/0</span>
+                        </div>
+                    </div>
+
+                    <!-- Left: Progress Bars -->
+                    <div class="card dashboard-card-wide">
+                        <h3 style="font-family: var(--font-heading); font-size: 1.35rem; margin-bottom: 1.5rem; font-weight: 700;">Section Performance Profiles</h3>
+                        <div class="sections-progress-list">
+                            
+                            <!-- C/P Section -->
+                            <div class="section-prog-item">
+                                <div class="section-prog-header">
+                                    <span class="section-prog-title">Chemical &amp; Physical Foundations (C/P)</span>
+                                    <span class="section-prog-score" id="cp-score">118 / 132 (0%)</span>
+                                </div>
+                                <div class="progress-bar-bg">
+                                    <div class="progress-bar-fill fill-cp" id="cp-fill" style="width: 0%"></div>
+                                </div>
+                            </div>
+
+                            <!-- CARS Section -->
+                            <div class="section-prog-item">
+                                <div class="section-prog-header">
+                                    <span class="section-prog-title">Critical Analysis &amp; Reasoning Skills (CARS)</span>
+                                    <span class="section-prog-score" id="cars-score">118 / 132 (50%)</span>
+                                </div>
+                                <div class="progress-bar-bg">
+                                    <div class="progress-bar-fill fill-cars" id="cars-fill" style="width: 50%"></div>
+                                </div>
+                            </div>
+
+                            <!-- B/B Section -->
+                            <div class="section-prog-item">
+                                <div class="section-prog-header">
+                                    <span class="section-prog-title">Biological &amp; Biochemical Foundations (B/B)</span>
+                                    <span class="section-prog-score" id="bb-score">118 / 132 (0%)</span>
+                                </div>
+                                <div class="progress-bar-bg">
+                                    <div class="progress-bar-fill fill-bb" id="bb-fill" style="width: 0%"></div>
+                                </div>
+                            </div>
+
+                            <!-- P/S Section -->
+                            <div class="section-prog-item">
+                                <div class="section-prog-header">
+                                    <span class="section-prog-title">Psychological, Social &amp; Biological Behavior (P/S)</span>
+                                    <span class="section-prog-score" id="ps-score">118 / 132 (0%)</span>
+                                </div>
+                                <div class="progress-bar-bg">
+                                    <div class="progress-bar-fill fill-ps" id="ps-fill" style="width: 0%"></div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- Right: Score Estimator Circular Gauge -->
+                    <div class="card score-estimator-card">
+                        <h3 style="font-family: var(--font-heading); font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem;">Composite Score Estimate</h3>
+                        <div class="score-gauge-container">
+                            <svg class="score-gauge-svg">
+                                <defs>
+                                    <linearGradient id="cyan-violet-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" stop-color="var(--accent-cyan)" />
+                                        <stop offset="100%" stop-color="var(--accent-violet)" />
+                                    </linearGradient>
+                                </defs>
+                                <circle class="score-gauge-bg" cx="90" cy="90" r="70"></circle>
+                                <circle class="score-gauge-fill" id="dash-gauge-fill" cx="90" cy="90" r="70"></circle>
+                            </svg>
+                            <div class="score-display">
+                                <span class="score-num" id="dash-score-num">500</span>
+                                <span class="score-label">Scaled</span>
+                            </div>
+                        </div>
+                        <p style="font-size: 0.82rem; color: var(--text-secondary); line-height: 1.4; max-width: 220px;">Scaled composite score estimate based on completed practice questions accuracy.</p>
+                    </div>
+
+                    <!-- Tips / Strategy -->
+                    <div class="card dashboard-tips">
+                        <div class="tips-header">
+                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="12" y1="16" x2="12" y2="12"></line>
+                                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                            </svg>
+                            <h3>MCAT 515+ Elite High-Yield Principles</h3>
+                        </div>
+                        <div class="tips-list">
+                            <div class="tip-item">
+                                <div class="tip-number">01</div>
+                                <div class="tip-content">
+                                    <h4>Active Recall Over Passive Reading</h4>
+                                    <p>Do not spend hours reading study guides. Test yourself continuously. Sketch out biochem pathways (glycolysis, TCA) from memory.</p>
+                                </div>
+                            </div>
+                            <div class="tip-item">
+                                <div class="tip-number">02</div>
+                                <div class="tip-content">
+                                    <h4>CARS Passage Mapping</h4>
+                                    <p>For CARS, read for the author’s primary thesis and tone rather than facts. Spend 3.5 minutes reading and 6 minutes answering.</p>
+                                </div>
+                            </div>
+                            <div class="tip-item">
+                                <div class="tip-number">03</div>
+                                <div class="tip-content">
+                                    <h4>Master Dimensional Analysis</h4>
+                                    <p>In physics and chemistry, if you forget an equation, align units (e.g. Joules = kg*m²/s² = N*m = C*V). This is a lifesaver for hard calculations.</p>
+                                </div>
+                            </div>
+                            <div class="tip-item">
+                                <div class="tip-number">04</div>
+                                <div class="tip-content">
+                                    <h4>Analyze Every Practice Error</h4>
+                                    <p>Log all errors. Note why the correct choice is correct and why the chosen option is wrong. Memorizing concepts is not enough; learn the test structures.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 2: EXERCISES -->
+            <section id="exercises" class="app-section">
+                <div class="section-header">
+                    <h2>Practice Exercises</h2>
+                    <p>Engage in high-yield MCAT-style practice quizzes with immediate breakdowns of correct and incorrect selections.</p>
+                </div>
+
+                <!-- Subject Selection Grid -->
+                <div class="subject-grid" id="subject-grid">
+                    
+                    <div class="card subject-card" id="sub-phys">
+                        <div class="subject-card-content">
+                            <div class="subject-header">
+                                <div class="subject-icon sub-phys">
+                                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                        <line x1="6" y1="3" x2="6" y2="21"></line>
+                                        <line x1="18" y1="3" x2="18" y2="21"></line>
+                                        <polyline points="3 6 12 12 21 6"></polyline>
+                                        <polyline points="3 18 12 12 21 18"></polyline>
+                                    </svg>
+                                </div>
+                                <span class="subject-badge badge-phys">Physics</span>
+                            </div>
+                            <h3 class="subject-title">Physical Principles</h3>
+                            <p class="subject-desc" id="card-desc-physics">Fluids, optics, electrostatics, circuits &amp; work-energy mechanics.</p>
+                        </div>
+                    </div>
+
+                    <div class="card subject-card" id="sub-biochem">
+                        <div class="subject-card-content">
+                            <div class="subject-header">
+                                <div class="subject-icon sub-biochem">
+                                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                        <path d="M4.5 16.5c-1.5 1.26-2.5 3.19-2.5 5.5h20c0-2.31-1-4.24-2.5-5.5"></path>
+                                        <path d="M12 2v10"></path>
+                                        <path d="M8 8h8"></path>
+                                        <circle cx="12" cy="12" r="4"></circle>
+                                    </svg>
+                                </div>
+                                <span class="subject-badge badge-biochem">Biochemistry</span>
+                            </div>
+                            <h3 class="subject-title">Biochemistry</h3>
+                            <p class="subject-desc" id="card-desc-biochemistry">Enzyme kinetics, amino acid configurations &amp; metabolic pathways.</p>
+                        </div>
+                    </div>
+
+                    <div class="card subject-card" id="sub-chem">
+                        <div class="subject-card-content">
+                            <div class="subject-header">
+                                <div class="subject-icon sub-chem">
+                                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                        <path d="M10 2v7.586a1 1 0 0 1-.293.707l-6.414 6.414A2 2 0 0 0 4.707 20h14.586a2 2 0 0 0 1.414-3.414l-6.414-6.414A1 1 0 0 1 14 9.586V2z"></path>
+                                        <line x1="6" y1="20" x2="18" y2="20"></line>
+                                        <line x1="8" y1="14" x2="16" y2="14"></line>
+                                    </svg>
+                                </div>
+                                <span class="subject-badge badge-chem">Chemistry</span>
+                            </div>
+                            <h3 class="subject-title">General Chemistry</h3>
+                            <p class="subject-desc" id="card-desc-chemistry">Acid-base buffers, thermodynamics &amp; oxidation-reduction states.</p>
+                        </div>
+                    </div>
+
+                    <div class="card subject-card" id="sub-orgchem">
+                        <div class="subject-card-content">
+                            <div class="subject-header">
+                                <div class="subject-icon sub-orgchem">
+                                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                        <polyline points="12 2 20 7 20 17 12 22 4 17 4 7 12 2"></polyline>
+                                        <line x1="12" y1="22" x2="12" y2="12"></line>
+                                        <line x1="12" y1="12" x2="20" y2="7"></line>
+                                        <line x1="12" y1="12" x2="4" y2="7"></line>
+                                    </svg>
+                                </div>
+                                <span class="subject-badge badge-orgchem">Organic Chem</span>
+                            </div>
+                            <h3 class="subject-title">Organic Chemistry</h3>
+                            <p class="subject-desc" id="card-desc-organic_chemistry">Stereocenter chirality, nucleophilic substitution &amp; IR/NMR spectroscopy.</p>
+                        </div>
+                    </div>
+
+                    <div class="card subject-card" id="sub-bio">
+                        <div class="subject-card-content">
+                            <div class="subject-header">
+                                <div class="subject-icon sub-bio">
+                                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                        <path d="M4.5 10.5C4.5 5.5 12 2 12 2s7.5 3.5 7.5 8.5c0 5-7.5 11.5-7.5 11.5s-7.5-6.5-7.5-11.5z"></path>
+                                        <circle cx="12" cy="10" r="3"></circle>
+                                    </svg>
+                                </div>
+                                <span class="subject-badge badge-bio">Biology</span>
+                            </div>
+                            <h3 class="subject-title">Biology</h3>
+                            <p class="subject-desc" id="card-desc-biology">Pedigree inheritance, cell cycles, action potentials &amp; organ systems.</p>
+                        </div>
+                    </div>
+
+                    <div class="card subject-card" id="sub-psych">
+                        <div class="subject-card-content">
+                            <div class="subject-header">
+                                <div class="subject-icon sub-psych">
+                                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                        <path d="M12 2a10 10 0 0 0-7.38 16.75C5.78 20.06 8.57 22 12 22s6.22-1.94 7.38-3.25A10 10 0 0 0 12 2z"></path>
+                                        <circle cx="12" cy="10" r="3"></circle>
+                                        <path d="M8 14c2.5 1.5 5.5 1.5 8 0"></path>
+                                    </svg>
+                                </div>
+                                <span class="subject-badge badge-psych">Psychiatry</span>
+                            </div>
+                            <h3 class="subject-title">Behavioral Sciences</h3>
+                            <p class="subject-desc" id="card-desc-psychiatry">Piaget stages, conditioning mechanisms &amp; sociological attributions.</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Active Quiz Area -->
+                <div class="quiz-container" id="quiz-area">
+                    <div class="quiz-header">
+                        <button class="back-btn" id="back-to-subjects">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <line x1="19" y1="12" x2="5" y2="12"></line>
+                                <polyline points="12 19 5 12 12 5"></polyline>
+                            </svg>
+                            <span>Back to subjects</span>
+                        </button>
+                        <span class="quiz-progress-text" id="quiz-progress-text">Progress: 1/5</span>
+                    </div>
+
+                    <div class="card quiz-card">
+                        <span class="quiz-question-tag" id="quiz-question-tag">Physics</span>
+                        <div class="quiz-question-text" id="quiz-question-text">
+                            Loading question...
+                        </div>
+                        <div class="quiz-options-list" id="quiz-options-list">
+                            <!-- Injected buttons -->
+                        </div>
+                    </div>
+
+                    <!-- Slide down explanation panel -->
+                    <div class="card explanation-panel" id="explanation-panel">
+                        <div class="explanation-body" id="explanation-body">
+                            <!-- Injected breakdown -->
+                        </div>
+                    </div>
+
+                    <div class="quiz-footer">
+                        <button class="btn btn-primary" id="next-question-btn" disabled>
+                            <span>Next Question</span>
+                            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Quiz Results Card -->
+                <div class="card results-card" id="results-card" style="display: none;">
+                    <div class="results-icon">🏆</div>
+                    <h3 style="font-family: var(--font-heading); font-size: 1.75rem; font-weight: 800;">Exercise Finished!</h3>
+                    <div class="results-score" id="results-score-text">3 / 3</div>
+                    <div id="results-pct" style="font-weight: 700; color: var(--accent-cyan); font-size: 1.1rem;">Accuracy: 100%</div>
+                    <p id="results-feedback" style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.5; max-width: 400px; margin: 0 auto;"></p>
+                    <button class="btn btn-primary" id="results-close-btn" style="margin-top: 1rem;">
+                        <span>Back to Exercises</span>
+                    </button>
+                </div>
+
+            </section>
+
+            <!-- SECTION 3: SCHEDULER -->
+            <section id="scheduler" class="app-section">
+                <div class="section-header">
+                    <h2>Study Planner</h2>
+                    <p>Generate a customized, week-by-week preparatory schedule matching your target exam timeline.</p>
+                </div>
+
+                <div class="scheduler-container">
+                    
+                    <!-- Left: Configuration Form -->
+                    <div class="card scheduler-form-card">
+                        <h3 style="font-family: var(--font-heading); font-size: 1.25rem; font-weight: 700; margin-bottom: 1.5rem;">Syllabus Parameters</h3>
+                        
+                        <div class="form-group">
+                            <label for="target-date">Target Exam Date</label>
+                            <input type="date" id="target-date" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="starting-score">Diagnostic Starting Score</label>
+                            <input type="number" id="starting-score" class="form-control" min="472" max="528" value="500">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="daily-hours">Capacity (Hours/Day)</label>
+                            <select id="daily-hours" class="form-control">
+                                <option value="2">2 hours / day (Light)</option>
+                                <option value="4" selected>4 hours / day (Moderate)</option>
+                                <option value="6">6 hours / day (Intense)</option>
+                                <option value="8">8 hours / day (Extreme)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="weak-subject">Primary Weak Area</label>
+                            <select id="weak-subject" class="form-control">
+                                <option value="physics" selected>Physical Principles (Physics)</option>
+                                <option value="biochemistry">Biochemistry</option>
+                                <option value="chemistry">General Chemistry</option>
+                                <option value="organic_chemistry">Organic Chemistry</option>
+                                <option value="biology">Biology (Genetics/Physiology)</option>
+                                <option value="psychiatry">Psychology &amp; Sociology</option>
+                            </select>
+                        </div>
+
+                        <button class="btn btn-primary" id="generate-schedule-btn" style="width: 100%; justify-content: center; margin-top: 1rem;">
+                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+                            </svg>
+                            <span>Generate Syllabus</span>
+                        </button>
+                    </div>
+
+                    <!-- Right: Schedule Outputs -->
+                    <div class="scheduler-output" style="width: 100%;">
+                        
+                        <!-- Empty State -->
+                        <div class="scheduler-empty" id="scheduler-empty">
+                            <svg viewBox="0 0 24 24" width="56" height="56" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                <line x1="16" y1="2" x2="16" y2="6"></line>
+                                <line x1="8" y1="2" x2="8" y2="6"></line>
+                                <line x1="3" y1="10" x2="21" y2="10"></line>
+                                <path d="M8 14h.01"></path>
+                                <path d="M12 14h.01"></path>
+                                <path d="M16 14h.01"></path>
+                                <path d="M8 18h.01"></path>
+                                <path d="M12 18h.01"></path>
+                                <path d="M16 18h.01"></path>
+                            </svg>
+                            <h4>No Schedule Active</h4>
+                            <p style="font-size: 0.85rem; max-width: 320px;">Complete the parameters form and click generate to build an adaptive, target-driven syllabus.</p>
+                        </div>
+
+                        <!-- Schedule Card -->
+                        <div class="card" id="scheduler-output-card" style="display: none; width: 100%;">
+                            <div class="calendar-header">
+                                <h3>Personalized Weekly Syllabus</h3>
+                                <p style="font-size: 0.85rem; color: var(--text-secondary);">Complete tasks to add study hours &amp; advance composite score estimates.</p>
+                            </div>
+                            <div class="calendar-weeks" id="calendar-weeks">
+                                <!-- Weeks loaded here -->
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- SECTION 4: RESOURCE HUB -->
+            <section id="resources" class="app-section">
+                <div class="section-header">
+                    <h2>Resource Hub</h2>
+                    <p>Reference sheets of key thermodynamic formulas, enzyme equations, stereochemistry details and general test strategies.</p>
+                </div>
+
+                <div class="card">
+                    <div class="hub-categories">
+                        <button class="hub-tab active" data-tab="hub-formulas">High-Yield Formulas</button>
+                        <button class="hub-tab" data-tab="hub-strategies">Prep &amp; Timing Strategies</button>
+                    </div>
+
+                    <!-- Formulas Pane -->
+                    <div class="hub-content-pane active" id="hub-formulas">
+                        <div class="guide-grid">
+                            
+                            <div class="formula-category">
+                                <h3 style="margin-bottom: 1.25rem;">Biochemistry &amp; Gen Chem</h3>
+                                <div class="formula-list">
+                                    <div class="formula-item">
+                                        <div class="formula-name">Michaelis-Menten Equation</div>
+                                        <div class="formula-math">v = (Vmax * [S]) / (Km + [S])</div>
+                                        <div class="formula-desc">Relates reaction rate (v) to substrate concentration ([S]). Km is the substrate concentration at 1/2 Vmax. Lower Km indicates higher affinity.</div>
+                                    </div>
+                                    <div class="formula-item">
+                                        <div class="formula-name">Henderson-Hasselbalch Equation</div>
+                                        <div class="formula-math">pH = pKa + log([A-] / [HA])</div>
+                                        <div class="formula-desc">Used to calculate pH of buffer systems. When weak acid concentration [HA] equals conjugate base [A-], pH = pKa.</div>
+                                    </div>
+                                    <div class="formula-item">
+                                        <div class="formula-name">Gibbs Free Energy Spontaneity</div>
+                                        <div class="formula-math">dG = dH - T*dS</div>
+                                        <div class="formula-desc">Determines reaction spontaneity. dG &lt; 0 is exergonic/spontaneous; dG &gt; 0 is endergonic/non-spontaneous.</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="formula-category">
+                                <h3 style="margin-bottom: 1.25rem;">Physics Principles</h3>
+                                <div class="formula-list">
+                                    <div class="formula-item">
+                                        <div class="formula-name">Thin Lens Equation</div>
+                                        <div class="formula-math">1/f = 1/do + 1/di</div>
+                                        <div class="formula-desc">Relates focal length (f), object distance (do), and image distance (di). Magnification m = -di/do. Real images have positive di.</div>
+                                    </div>
+                                    <div class="formula-item">
+                                        <div class="formula-name">Bernoulli's Flow Equation</div>
+                                        <div class="formula-math">P + 1/2*r*v^2 + r*g*h = const</div>
+                                        <div class="formula-desc">Conservation of energy for fluids. As flow speed (v) increases in narrow areas (continuity), pressure (P) decreases.</div>
+                                    </div>
+                                    <div class="formula-item">
+                                        <div class="formula-name">Ohm's Electrical Law</div>
+                                        <div class="formula-math">V = I * R</div>
+                                        <div class="formula-desc">Voltage (V) equals Current (I) times Resistance (R). Resistors in series sum directly (R = R1+R2). Resistors in parallel sum inversely (1/R = 1/R1 + 1/R2).</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- Strategies Pane -->
+                    <div class="hub-content-pane" id="hub-strategies">
+                        <div class="guide-grid">
+                            
+                            <div class="strategy-category">
+                                <h3 style="margin-bottom: 1.25rem;">CARS Timing &amp; Passages</h3>
+                                <div class="strategy-list">
+                                    <div class="strategy-item">
+                                        <div class="strategy-title">The 9-Passage 90-Minute Rules</div>
+                                        <div class="strategy-desc">Allocate exactly 10 minutes per passage. Do not exceed 4 minutes reading a passage. You cannot read word-for-word details; read to map the structure (Author Thesis, Paragraph Functions, Key Shift words like 'However').</div>
+                                    </div>
+                                    <div class="strategy-item">
+                                        <div class="strategy-title">Avoid the Extreme Options Trap</div>
+                                        <div class="strategy-desc">Answers that contain absolute qualifiers like "always", "never", "only", or "absolutely" are almost always incorrect. The MCAT rewards moderate, nuanced reasoning.</div>
+                                    </div>
+                                    <div class="strategy-item">
+                                        <div class="strategy-title">The "Main Idea" Fallback</div>
+                                        <div class="strategy-desc">When struggling with a question, select the answer choice that aligns most closely with the author's primary arguments. Eliminate choices that are true facts but fail to address the actual prompt context.</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="strategy-category">
+                                <h3 style="margin-bottom: 1.25rem;">Active Recall &amp; Mock Exams</h3>
+                                <div class="strategy-list">
+                                    <div class="strategy-item">
+                                        <div class="strategy-title">Spaced Repetition Schedule</div>
+                                        <div class="strategy-desc">Review your flashcard decks daily. Space review periods of hard concepts (1 day, 3 days, 1 week, 2 weeks) to move memorizations into long-term structures.</div>
+                                    </div>
+                                    <div class="strategy-item">
+                                        <div class="strategy-title">Simulate Real Testing Conditions</div>
+                                        <div class="strategy-desc">Complete full-length exams starting at 8:00 AM. Wear earplugs, take exactly the scheduled breaks, and avoid checking notes. Standardizing test environments mitigates testing anxiety.</div>
+                                    </div>
+                                    <div class="strategy-item">
+                                        <div class="strategy-title">The Diagnostic Error Notebook</div>
+                                        <div class="strategy-desc">Write down every question you got wrong or guessed. Categorize them: "Content Gap", "Misreading", or "Logical Error". Rereading this log prior to study sessions blocks recurring mistakes.</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- SECTION 5: AI STUDY COACH -->
+            <section id="chat-assistant" class="app-section">
+                <div class="section-header">
+                    <h2>AI Study Coach</h2>
+                    <p>Ask our Gemini-powered MCAT tutor any conceptual question, clarify weak areas, or ask for mnemonic help.</p>
+                </div>
+
+                <div class="card chat-card-container">
+                    <div class="chat-messages" id="chat-messages">
+                        <div class="chat-bubble coach">
+                            <div class="bubble-avatar">🤖</div>
+                            <div class="bubble-content">
+                                <p>Hello! I am your AI MCAT Coach. I can explain hard concepts in physics, biochemistry, general chemistry, organic chemistry, biology, or psychiatry/sociology. What topics should we break down today?</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="chat-input-area">
+                        <input type="text" id="chat-input" placeholder="Ask a question (e.g. explain the Bohr effect, help me with stereochemistry, etc.)..." autocomplete="off">
+                        <button class="btn btn-primary" id="chat-send-btn">
+                            <span>Send</span>
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <line x1="22" y1="2" x2="11" y2="13"></line>
+                                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Questions JS -->
+    <script src="{{ url_for('static', filename='js/questions.js') }}"></script>
+    <!-- Main Application JS -->
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
